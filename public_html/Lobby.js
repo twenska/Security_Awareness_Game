@@ -6,7 +6,6 @@ class Lobby extends Phaser.Scene{
     preload ()
         {
             this.load.spritesheet('floor', 'assets/floors.png', { frameWidth: 32, frameHeight: 32 } );
-            this.load.spritesheet('laptop', 'assets/laptop.png', { frameWidth: 32, frameHeight: 32 });
             this.load.spritesheet('dude', 'assets/Spieler.png', { frameWidth: 30, frameHeight: 32 });
             this.load.spritesheet('sekretaer', 'assets/Sekretaerin.png', { frameWidth: 28, frameHeight: 32 });
             this.load.image('dialog', 'assets/dialogbox.png', {frameWidth: 1024, frameHeight: 576});
@@ -14,13 +13,11 @@ class Lobby extends Phaser.Scene{
             this.load.spritesheet('teppich', 'assets/teppich.png', {frameWidth: 32, frameHeight: 32});
             this.load.image('LobbyDesk_90', 'assets/LobbyDesk_Hoch.png', {frameWidth: 16, frameHeight: 48});
             this.load.image('Tuer', 'assets/Tuer.png', {frameWidth: 31, frameHeight: 35});
-            this.load.image('Gelaender', 'assets/gelaender.png', {frameWidth: 532, frameHeight: 13});
             this.load.image('Fenster', 'assets/window.png',{frameWidth:110, frameHeight: 55});
             this.load.image('DoppelTuer', 'assets/DoppelTuer.png', {frameWidth: 64, frameHeight: 48});
             this.load.image('Tisch', 'assets/desk.png', {frameWidth: 90, frameHeight: 69});
             this.load.image('TischZettel', 'assets/TischZettel.png', {frameWidth: 32, frameHeight: 32});
             this.load.image('Workstation', 'assets/workstation.png',{frameWidth:55, frameHeight: 50});
-            this.load.image('Copier', 'assets/copier.png',{frameWidth:55, frameHeight: 55});
             this.load.spritesheet('Stuehle', 'assets/Stuehle.png', {frameWidth: 30.75, frameHeight: 46});
             this.load.spritesheet('shelves', 'assets/Shelves.png', { frameWidth: 32, frameHeight: 64 });
             this.load.image('Paper', 'assets/Paper.png',{frameWidth:9, frameHeight: 11});
@@ -214,20 +211,20 @@ class Lobby extends Phaser.Scene{
                 if(this.inRange(this.sekretaer,50,70)){
                     this.inDialog = true;
                     this.actualDialog = this.DialogEmpfang;
-                    console.log(this.actualDialog);
+                    //console.log(this.actualDialog);
                     this.actualTask = this.undefined;
                     this.DialogEmpfangDone = true;
                     this.toggleDialog();
                     document.getElementById("Hinweis").innerHTML = "Gehe auf die rechte Tür zu und drücke die Interaktionstaste um hindurchzugehen!";
                 }else{
                 if(this.inRange(this.door,30,50) && this.DialogEmpfangDone){
-			console.log(this.user);
+			//console.log(this.user);
                     this.scene.start("Hausmeister", {score: this.score,user: this.user,gameID: this.gameID,time: this.Startingtime});
                 
                 }else{
                     this.inDialog = true;
                     this.actualDialog = this.DialogBoot;
-                    console.log(this.actualDialog);
+                    //console.log(this.actualDialog);
 
                     this.actualTask = undefined;
                     this.toggleDialog();
@@ -352,7 +349,7 @@ class Lobby extends Phaser.Scene{
     toggleDialog(){
         if(this.actualDialog != undefined){
             var children = this.actualDialog.getChildren();
-            console.log(children);
+            //console.log(children);
             var firstRun = true;
             var changedSomething = false;
             for(var i = 0; (i < children.length)&&!changedSomething;i++){
@@ -360,8 +357,8 @@ class Lobby extends Phaser.Scene{
                     changedSomething = true;
                         firstRun = false;
                         children[i].setVisible(false);
-                        console.log(i);
-                        console.log(children[i]);
+                        //console.log(i);
+                        //console.log(children[i]);
                         if(i != children.length-1){
                             children[i+1].setVisible(true);   
                         }else{
@@ -402,7 +399,7 @@ getCookie(name){
     var parts2 = parts[1].split(",");
     if (name == "username") return parts2[0].split(":")[1].split('"').join('');
     if (name == "gameId") return parts2[1].split(":")[1].replace('}','');
-    } 
+    }
 
 }
 

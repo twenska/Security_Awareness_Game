@@ -12,7 +12,6 @@ class Lobby_2 extends Phaser.Scene{
     preload ()
         {
             this.load.spritesheet('floor', 'assets/floors.png', { frameWidth: 32, frameHeight: 32 } );
-            this.load.spritesheet('laptop', 'assets/laptop.png', { frameWidth: 32, frameHeight: 32 });
             this.load.spritesheet('dude', 'assets/Spieler.png', { frameWidth: 30, frameHeight: 32 });
             this.load.spritesheet('sekretaer', 'assets/Sekretaerin.png', { frameWidth: 28, frameHeight: 32 });
             this.load.image('dialog', 'assets/dialogbox.png', {frameWidth: 1024, frameHeight: 576});
@@ -20,13 +19,11 @@ class Lobby_2 extends Phaser.Scene{
             this.load.spritesheet('teppich', 'assets/teppich.png', {frameWidth: 32, frameHeight: 32});
             this.load.image('LobbyDesk_90', 'assets/LobbyDesk_Hoch.png', {frameWidth: 16, frameHeight: 48});
             this.load.image('Tuer', 'assets/Tuer.png', {frameWidth: 31, frameHeight: 35});
-            this.load.image('Gelaender', 'assets/gelaender.png', {frameWidth: 532, frameHeight: 13});
             this.load.image('Fenster', 'assets/window.png',{frameWidth:110, frameHeight: 55});
             this.load.image('DoppelTuer', 'assets/DoppelTuer.png', {frameWidth: 64, frameHeight: 48});
             this.load.image('Tisch', 'assets/desk.png', {frameWidth: 90, frameHeight: 69});
             this.load.image('TischZettel', 'assets/TischZettel.png', {frameWidth: 32, frameHeight: 32});
             this.load.image('Workstation', 'assets/workstation.png',{frameWidth:55, frameHeight: 50});
-            this.load.image('Copier', 'assets/copier.png',{frameWidth:55, frameHeight: 55});
             this.load.spritesheet('Stuehle', 'assets/Stuehle.png', {frameWidth: 30.75, frameHeight: 46});
             this.load.spritesheet('shelves', 'assets/Shelves.png', { frameWidth: 32, frameHeight: 64 });
             this.load.image('Paper', 'assets/Paper.png',{frameWidth:9, frameHeight: 11});
@@ -205,7 +202,7 @@ class Lobby_2 extends Phaser.Scene{
                         this.toggleDialog();
                         document.getElementById("Hinweis").innerHTML = "Guck dir die E-Mail auf dem Rechner der Sekretärin an.";
                     }else{
-                    if(this.inRange(this.workstation,30,50) && this.DialogSekretaerDone){
+                    if(this.inRange(this.workstation,30,50) && this.DialogSekretaerDone&&!this.DialogPhishingDone){
                         this.inDialog = true;
                         this.actualDialog = this.DialogPhishing;
                         //console.log(this.actualDialog);
@@ -601,13 +598,13 @@ questionAPI(json)
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = this.callbackFunction(xmlhttp);
-    xmlhttp.open("POST", URL, false);
+    xmlhttp.open("POST", URL);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.onreadystatechange = this.callbackFunction(xmlhttp);
-    console.log(json);
+    //console.log(json);
     xmlhttp.send(json);
     //alert(xmlhttp.responseText);
-    console.log(xmlhttp.status);
+    //console.log(xmlhttp.status);
     //document.getElementById("div").innerHTML = xmlhttp.statusText + ":" + xmlhttp.status + "<BR><textarea rows='100' cols='100'>" + xmlhttp.responseText + "</textarea>";
 }
 
@@ -625,8 +622,8 @@ var neededTime = this.convertTime(neededTimeMs);
                         +'"score"  : '+this.score+','
                         +'"time" : '+neededTime+''
                         +'}';
-URL = "https://game.twenska.de/be/end-game";  //Your URL
-/*
+/*URL = "https://game.twenska.de/be/end-game";  //Your URL
+
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = this.callbackFunction(xmlhttp);
     xmlhttp.open("POST", URL, false);
@@ -639,6 +636,7 @@ URL = "https://game.twenska.de/be/end-game";  //Your URL
 convertTime(millis) {
   var minutes = Math.floor(millis / 60000);
   var seconds = ((millis % 60000) / 1000).toFixed(0);
-  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  var apo = '"';
+  return  apo +"00:"+ minutes + ":" + (seconds < 10 ? '0' : '') + seconds + apo;
 }
 }

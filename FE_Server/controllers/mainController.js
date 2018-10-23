@@ -50,6 +50,7 @@ module.exports = function (app) {
 
         util.promise.post('scores', post_json).then(function (post_res) {
             data.scores = post_res.body.scores;
+	console.log(data.scores);
             end();
         }).catch(function (err) {
             console.log(err);

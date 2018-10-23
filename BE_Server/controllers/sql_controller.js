@@ -119,11 +119,15 @@ module.exports = function (app) {
         const username = req.body.username;
         const score = 0;
         const time = '00:00:00'
-        const sql = 'INSERT INTO securitygame.games VALUE (' + gameId + ', "' + username + '", ' + score + ', "' + time + '");';
 
+	
+
+        const sql = 'INSERT INTO securitygame.games VALUE (' + gameId + ', "' + username + '", ' + score + ', "' + time + '");';
+	const sql2 = 'INSERT INTO securitygame.answers VALUE (' + gameId + ', ' + 1 + ', ' + 0 + '),(' + gameId + ', ' + 2 + ', ' + 0 + '),(' + gameId + ', ' + 3 + ', ' + 0 + '),(' + gameId + ', ' + 4 + ', ' + 0 + ');';
         var data = constructors.json.insert;
         res.setHeader("200", content.json);
         accessDatabase(sql).then(function (rows) {
+		accessDatabase(sql2);
             console.log(rows);
             data.success = true;
             res.end(JSON.stringify(data));
@@ -139,8 +143,8 @@ module.exports = function (app) {
         const gameId = req.body.gameId;
         const questionId = req.body.questionId;
         const answer = req.body.answer;
-        const sql = 'INSERT INTO securitygame.answers VALUE (' + gameId + ', ' + questionId + ', ' + answer + ');';
-
+        //const sql = 'INSERT INTO securitygame.answers VALUE (' + gameId + ', ' + questionId + ', ' + answer + ');';
+	const sql = 'UPDATE securitygame.answers SET answer=' + answer + ' WHERE f_game_id='+gameId+' AND question_Id='+questionId+';';
 
         var data = constructors.json.insert;
         res.setHeader("200", content.json);

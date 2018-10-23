@@ -42,12 +42,6 @@ class Hausmeister extends Phaser.Scene{
         document.getElementById("Hinweis").innerHTML = "";
         document.getElementById("Level").innerHTML="Der Hausmeister";
 
-        /* Test für dynamische Dialoge
-        this.DialogEmpfang = this.physics.add.staticGroup();
-        text.create(this.add.text(200,200,"test",{font:"40px Impact"}));
-        var temp=text.getChildren();
-        temp[0].x.setVisible(false);
-        console.log(temp); */
 
         this.inDialog = false;
         this.actualDialog = undefined;
@@ -113,7 +107,7 @@ class Hausmeister extends Phaser.Scene{
                 //Aufgabe Zertifikat - Start
                 if(this.inRange(this.workstation,50,50) && this.AufgabeAusweisDone && !this.AufgabeZertifikatDone){
                     this.janitorMoving = true;
-                    console.log("TRUE"+this.janitor.y);
+                    //console.log("TRUE"+this.janitor.y);
                     this.inDialog = true;
                     this.actualDialog = this.DialogAufgabeZertifikat;
                     this.actualTask = this.Aufgabe_Zertifikat;
@@ -402,8 +396,8 @@ toggleDialog(){
                             this.actualDialog = undefined;
                             this.actualTask = undefined;
                         }else{
-                            console.log("enabled");
-				this.makeMovable(this.player);
+                           
+			    this.makeMovable(this.player);
                             this.Key_W.enabled = true;
                             this.Key_A.enabled = true;
                             this.Key_S.enabled = true;
@@ -417,7 +411,6 @@ toggleDialog(){
                 }    
         }
         if(firstRun){
-            console.log("disabled");
 
             this.Dialog.setVisible(true);
             child[0].setVisible(true);
@@ -504,13 +497,13 @@ questionAPI(json)
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = this.callbackFunction(xmlhttp);
-    xmlhttp.open("POST", URL, false);
+    xmlhttp.open("POST", URL);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.onreadystatechange = this.callbackFunction(xmlhttp);
-    console.log(json);
+    //console.log(json);
     xmlhttp.send(json);
     //alert(xmlhttp.responseText);
-    console.log(xmlhttp.status);
+    //console.log(xmlhttp.status);
     //document.getElementById("div").innerHTML = xmlhttp.statusText + ":" + xmlhttp.status + "<BR><textarea rows='100' cols='100'>" + xmlhttp.responseText + "</textarea>";
 }
 

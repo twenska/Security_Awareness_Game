@@ -1,0 +1,47 @@
+@import url('bootstrap.css');
+
+*{
+    margin: 0;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 0;
+    margin-top: 0;
+}
+nav{
+    position: sticky;
+    top: 0;
+    background-color: grey;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "left . right";
+    grid-gap: 5px;
+}
+nav > #left{
+    grid-area: left;
+    margin: auto;
+    margin-left: 2%;
+}
+nav > #right{
+    grid-area: right;
+    margin: auto;
+    margin-right: 2%;
+}
+
+footer{
+    position: sticky;
+    bottom: 0;
+    background-color: grey;
+    border: 1px solid black;
+}
+
+.spacer {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+a.nav,a.foot,span.nav,span.foot{
+    color: white;
+}

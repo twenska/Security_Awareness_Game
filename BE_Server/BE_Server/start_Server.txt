@@ -1,0 +1,4 @@
+cmd im Verzeichnis 'E:\xampp\htdocs\GitProjects\security-game\BE_Server' öffnen
+node server
+oder (falls modul 'Nodemon' installiert ist)
+nodemon server

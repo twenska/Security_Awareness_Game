@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Security Game - Analyse</title>
+    <meta charset="UTF-8">
+    <link href="assets/styles/analyse.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <% include includes/nav.html %>
+	<script>(function(t,e,s,o){var n,a,c;t.SMCX=t.SMCX||[],e.getElementById(o)||(n=e.getElementsByTagName(s),a=n[n.length-1],c=e.createElement(s),c.type="text/javascript",c.async=!0,c.id=o,c.src=["https:"===location.protocol?"https://":"http://","widget.surveymonkey.com/collect/website/js/tRaiETqnLgj758hTBazgd7Hbl7nTpnGgNB_2F7pVr_2Fx4vE0TK39u6d106yEzkJ6u_2Bv.js"].join(""),a.parentNode.insertBefore(c,a))})(window,document,"script","smcx-sdk");</script>
+    <main>
+        <div id="head">
+            <h2>Auswertung der Ergebnisse</h2>
+        </div>
+        <div id="wrapper">
+            <div id="left">
+                <table id="player">
+                    <tr>
+                        <th colspan="2">Spielerzahl</th>
+                    </tr>
+                    <tr>
+                        <td>gesamt:</td>
+                        <td>
+                            <%= data.player.totalPlayers %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Abschlussquote:</td>
+                        <td>
+                            <%= data.player.finishedPercent %> %</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="right">
+                <table id="question">
+                    <tr>
+                        <th>Frage</th>
+                        <th>Antworten (Gesamt)</th>
+                        <th>richtig beantwortet</th>
+                        <th>falsch beantwortet</th>
+                        <th>nicht beantwortet</th>
+                    </tr>
+                    <% for(let i = 0; i < data.question.length; i++){ %>
+                    <tr>
+                        <td>
+                            <%= data.question[i].id %>
+                        </td>
+                        <td>
+                            <%= data.question[i].totalAnswers %>
+                        </td>
+                        <td>
+                            <%= data.question[i].correctPercent %> %</td>
+                        <td>
+                            <%= data.question[i].falsePercent %> %</td>
+                        <td>
+                            <%= data.question[i].noAnswerPercent %> %</td>
+                    </tr>
+                    <% } %>
+                </table>
+            </div>
+        </div>
+        <div id="graph">
+            <div id="graph-data">
+                <div id="question" style="padding: 0; padding-right: 5px">
+                    <b>Frage</b>
+                </div>
+                <div id="data">
+                    <div id="correct" style="width: 33.33%; padding: 0;">
+                        <b>richtige Antworten</b>
+                    </div>
+                    <div id="wrong" style="width: 33.33%; padding: 0">
+                        <b>falsche Antworten</b>
+                    </div>
+                    <div id="no-answer" style="width: 33.33%; padding: 0">
+                        <b>keine Antwort</b>
+                    </div>
+                </div>
+            </div>
+            <% for(let i = 0; i < data.question.length; i++){ %>
+            <div id="graph-data">
+                <div id="question">
+                    <%= data.question[i].id %>
+                </div>
+                <div id="data">
+                    <div id="correct" style="width: <%= data.question[i].correctPercent %>%">
+                        <b><%= data.question[i].correctPercent %> %</b>
+                    </div>
+                    <div id="wrong" style="width: <%= data.question[i].falsePercent %>%">
+                        <b><%= data.question[i].falsePercent %> %</b>
+                    </div>
+                    <div id="no-answer" style="width: <%= data.question[i].noAnswerPercent %>%">
+                        <b><%= data.question[i].noAnswerPercent %> %</b>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </main>
+
+    <% include includes/footer.html %>
+</body>
+
+</html>

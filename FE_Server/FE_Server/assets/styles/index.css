@@ -1,0 +1,67 @@
+@import url('base.css');
+
+.error{
+    color: crimson;
+}
+.confirm{
+    color: limegreen;
+}
+#wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0px;
+    grid-gap: 5px;
+    min-width: 100%;
+    align-self: center;
+    grid-template-areas:
+        "scores right";
+}
+
+#scores{
+    grid-area: scores;
+    margin: 0px;
+}
+#scores table{
+    margin: auto;
+    border: 1px solid black;
+}
+#scores th{
+    padding-left: 10px;
+    padding-right: 40px;
+    background: black;
+    color: white;
+}
+#scores tr:nth-child(even){
+    background: white;
+}
+#scores tr{
+    background: lightslategray;
+}
+#scores td{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#right {
+    grid-area: right;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    margin: 0px;
+    grid-gap: 5px;
+    max-width: 100%;
+    max-height: 80vh;
+    grid-template-areas:
+        "login"
+        ".";
+}
+#login{
+    grid-area: login;
+    margin: 0px;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    align-items: center;
+}
+#login table{
+    width: fit-content;
+    margin: auto;
+}

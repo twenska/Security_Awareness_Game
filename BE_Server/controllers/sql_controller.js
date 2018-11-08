@@ -81,7 +81,7 @@ module.exports = function (app) {
     //--POST-REQUESTS----------------------------------------------------------
     //scores
     app.post('/scores', URLencodedParser, function (req, res) {
-        const sql = 'SELECT id, user, score, time FROM securitygame.games WHERE score > 0 ORDER BY score DESC;';
+        const sql = 'SELECT id, user, score, time FROM securitygame.games WHERE time != "00:00:00" ORDER BY score DESC;';
         const max_lines = req.body.max - 1;
 
         res.setHeader("200", content.json);

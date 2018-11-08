@@ -14,6 +14,7 @@ Das hier verfügbare Verzeichnis "public_html" muss als root-Verzeichnis des Apa
 Einrichten der Weiterleitungen zum NodeJS via ProxyPass(https://stackoverflow.com/questions/8541182/apache-redirect-to-another-port)
 
   /fe -> localhost:3000
+  
   /be -> localhost:3001
 
 Zur Einrichtung der MySQL Datenbank muss das Skript DB_create_script.sql ausgeführt werden. (User mit entsprechender Berechtigung wird angelegt)
